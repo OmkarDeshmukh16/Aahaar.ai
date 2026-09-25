@@ -3,13 +3,12 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Flame, Moon, Sparkles, Sun, Wind, Droplets } from 'lucide-react'
+import { Flame, Sparkles, Wind, Droplets } from 'lucide-react'
 
 const DOSHA_PROFILES = [
   {
     id: 'pitta',
     name: 'Pitta (Fire & Water)',
-    accent: 'from-amber-500/20 to-orange-500/10 border-amber-500/30 text-amber-300',
     icon: Flame,
     color: 'text-amber-400',
     summary: 'High internal metabolic heat and sharp digestive fire (Agni). Prone to acidity and systemic inflammation.',
@@ -18,7 +17,6 @@ const DOSHA_PROFILES = [
   {
     id: 'vata',
     name: 'Vata (Air & Space)',
-    accent: 'from-cyan-500/20 to-blue-500/10 border-cyan-500/30 text-cyan-300',
     icon: Wind,
     color: 'text-cyan-400',
     summary: 'Fast, variable metabolism prone to dry skin, digestive bloat, and nervous energy fluctuations.',
@@ -27,7 +25,6 @@ const DOSHA_PROFILES = [
   {
     id: 'kapha',
     name: 'Kapha (Earth & Water)',
-    accent: 'from-emerald-500/20 to-teal-500/10 border-emerald-500/30 text-emerald-300',
     icon: Droplets,
     color: 'text-emerald-400',
     summary: 'Strong endurance and stable structure, but slower basal metabolic clearance and fluid retention.',
@@ -42,11 +39,11 @@ export function DoshaEngineSection() {
   const Icon = selected.icon
 
   return (
-    <section id="dosha" className="relative py-20 lg:py-28 bg-[#070b13]/50 border-t border-white/[0.05]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="dosha" className="relative w-full py-28 sm:py-36 bg-[#070b13]/60 border-t border-white/[0.06] flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-medium text-amber-300">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-medium text-amber-300 mx-auto">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Ayurvedic Bio-Individuality Engine</span>
           </div>
@@ -62,7 +59,7 @@ export function DoshaEngineSection() {
         </div>
 
         {/* Interactive Dosha Switcher */}
-        <div className="mt-12 flex justify-center gap-3">
+        <div className="flex flex-wrap justify-center items-center gap-3 mb-8 w-full">
           {DOSHA_PROFILES.map((d) => {
             const active = activeDosha === d.id
             const BtnIcon = d.icon
@@ -70,7 +67,7 @@ export function DoshaEngineSection() {
               <button
                 key={d.id}
                 onClick={() => setActiveDosha(d.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                   active
                     ? 'bg-amber-500/20 text-amber-300 border border-amber-500/60 shadow-lg shadow-amber-950/50'
                     : 'bg-white/[0.03] text-neutral-400 border border-white/[0.08] hover:text-white hover:bg-white/[0.06]'
@@ -84,16 +81,16 @@ export function DoshaEngineSection() {
         </div>
 
         {/* Selected Dosha Card */}
-        <div className="mt-6 max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-[#0c121e]/80 p-6 backdrop-blur-xl">
+        <div className="w-full max-w-2xl mx-auto rounded-2xl border border-white/[0.08] bg-[#0c121e]/80 p-6 sm:p-8 backdrop-blur-xl mb-16">
           <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-xl bg-white/[0.04] border border-white/[0.08] ${selected.color}`}>
+            <div className={`p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] ${selected.color} flex-shrink-0`}>
               <Icon className="w-6 h-6" />
             </div>
-            <div className="space-y-1.5 flex-grow">
+            <div className="space-y-2 flex-grow text-left">
               <h3 className="text-base font-semibold text-white">{selected.name}</h3>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">{selected.summary}</p>
               <p className="text-xs text-emerald-400 pt-1">
-                <strong>AI Prescription:</strong> {selected.recommendations}
+                <strong className="text-emerald-300">AI Recommendation:</strong> {selected.recommendations}
               </p>
             </div>
           </div>
@@ -101,14 +98,14 @@ export function DoshaEngineSection() {
 
         {/* Dashboard Image Visual */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7 }}
-          className="relative mt-12 max-w-5xl mx-auto"
+          className="relative w-full max-w-4xl mx-auto flex justify-center items-center"
         >
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 blur-2xl opacity-60" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/[0.12] bg-[#0c121e]/90 shadow-2xl">
+          <div className="relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-[#0c121e]/90 shadow-2xl">
             <Image
               src="/images/dosha-dashboard.jpg"
               alt="Aahaar AI Ayurvedic Dosha Analysis and Circadian Nutrition Dashboard"

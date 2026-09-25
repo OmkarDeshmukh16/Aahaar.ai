@@ -11,9 +11,9 @@ import { Footer } from '@/components/sections/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#06090e] text-white selection:bg-emerald-500/30 selection:text-white">
+    <div className="w-full min-h-screen bg-[#06090e] text-white selection:bg-emerald-500/30 selection:text-white flex flex-col items-center">
       <Navbar />
-      <main>
+      <main className="w-full flex flex-col items-center">
         <HeroSection />
         <VisionScannerSection />
         <DoshaEngineSection />

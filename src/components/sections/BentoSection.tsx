@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Brain, Clock, Flame, LineChart, ShieldCheck, Sparkles } from 'lucide-react'
+import { Brain, Clock, LineChart, ShieldCheck, Sparkles } from 'lucide-react'
 
 const BENTO_CARDS = [
   {
@@ -48,10 +48,11 @@ const BENTO_CARDS = [
 
 export function BentoSection() {
   return (
-    <section id="features" className="relative py-20 lg:py-28 bg-[#070b13]/50 border-t border-white/[0.05]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="features" className="relative w-full py-28 sm:py-36 bg-[#070b13]/60 border-t border-white/[0.06] flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-medium text-emerald-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-medium text-emerald-300 mx-auto">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Engineered for Peak Performance</span>
           </div>
@@ -67,7 +68,7 @@ export function BentoSection() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
           {BENTO_CARDS.map((card, idx) => {
             const CardIcon = card.icon
             return (
@@ -77,26 +78,28 @@ export function BentoSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c121e]/80 p-7 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.18] hover:bg-[#0c121e]/95 group"
+                className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c121e]/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.18] hover:bg-[#0c121e]/95 group flex flex-col justify-between"
               >
-                <div className="flex items-start justify-between">
-                  <div className={`p-2.5 rounded-xl border ${card.accent}`}>
-                    <CardIcon className="w-5 h-5" />
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div className={`p-3 rounded-xl border ${card.accent}`}>
+                      <CardIcon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-400 border border-white/[0.08] rounded-full px-3 py-1 bg-white/[0.02]">
+                      {card.badge}
+                    </span>
                   </div>
-                  <span className="text-[11px] font-semibold tracking-wider uppercase text-neutral-400 border border-white/[0.08] rounded-full px-2.5 py-1 bg-white/[0.02]">
-                    {card.badge}
-                  </span>
+
+                  <h3 className="mt-6 text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    {card.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm text-neutral-300 leading-relaxed font-light">
+                    {card.description}
+                  </p>
                 </div>
 
-                <h3 className="mt-5 text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                  {card.title}
-                </h3>
-
-                <p className="mt-2.5 text-sm text-neutral-300 leading-relaxed font-light">
-                  {card.description}
-                </p>
-
-                <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-baseline gap-2">
+                <div className="mt-8 pt-6 border-t border-white/[0.06] flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-extrabold text-white font-[var(--font-display)]">
                     {card.stat}
                   </span>

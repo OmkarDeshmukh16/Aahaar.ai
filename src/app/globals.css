@@ -27,18 +27,17 @@
 }
 
 /* ─── Base Styles ────────────────────────────────────────────── */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
   cursor: default;
+  width: 100%;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   background: var(--color-void);
   color: #f3f4f6;
   overflow-x: hidden;
